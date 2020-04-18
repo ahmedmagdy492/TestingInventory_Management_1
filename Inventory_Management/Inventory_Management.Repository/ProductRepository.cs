@@ -27,9 +27,23 @@ namespace Inventory_Management.Repository
             return Products;
         }
 
-        public void Create(IProduct product)
+        public bool Create(IProduct product)
         {
-            Products.Add(product);
+            if(product != null)
+            {
+                if(product.ExpiryDate >= product.ProductionDate)
+                {
+                    Products.Add(product);
+                    return true;
+                }else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public void Remove(int id)
@@ -43,6 +57,11 @@ namespace Inventory_Management.Repository
             {
                 throw new NullReferenceException();
             }
+        }
+
+        public IProduct Find(int id)
+        {
+            return Products.FirstOrDefault(p => p.Id == id);
         }
     }
 }
