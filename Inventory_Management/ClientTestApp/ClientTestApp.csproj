@@ -5,18 +5,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E45E2E4D-08F2-4A07-9671-0F2052DC07A8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Inventory_Management</RootNamespace>
-    <AssemblyName>Inventory_Management</AssemblyName>
+    <ProjectGuid>{B7A63D25-687F-4F03-A218-B3DFB90154F5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ClientTestApp</RootNamespace>
+    <AssemblyName>ClientTestApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,8 +45,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,14 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProduct.cs" />
-    <Compile Include="Migrations\202004181555149_InitialModel.cs" />
-    <Compile Include="Migrations\202004181555149_InitialModel.designer.cs">
-      <DependentUpon>202004181555149_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductModel.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +61,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004181555149_InitialModel.resx">
-      <DependentUpon>202004181555149_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Inventory_Management.Repository\Inventory_Management.Repository.csproj">
+      <Project>{55c57230-722e-4d85-aebc-1b18d1288be8}</Project>
+      <Name>Inventory_Management.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inventory_Management\Inventory_Management.Core.csproj">
+      <Project>{E45E2E4D-08F2-4A07-9671-0F2052DC07A8}</Project>
+      <Name>Inventory_Management.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
